@@ -44,6 +44,10 @@ async function loadAbilities() {
     return {
       champion: champion.name,
       abilities: {
+        P: {
+          name: champion.passive.name,
+          icon: `https://ddragon.leagueoflegends.com/cdn/${version}/img/passive/${champion.passive.image.full}`
+        },
         Q: {
           name: champion.spells[0].name,
           icon: `https://ddragon.leagueoflegends.com/cdn/${version}/img/spell/${champion.spells[0].image.full}`
@@ -68,9 +72,14 @@ async function loadAbilities() {
   newQuestion();
 }
 
+function getAbilityLabel(key) {
+  if (key === "P") return "Passive";
+  return key;
+}
+
 function newQuestion() {
   const champion = abilities[Math.floor(Math.random() * abilities.length)];
-  const keys = ["Q", "W", "E", "R"];
+  const keys = ["P", "Q", "W", "E", "R"];
   const key = keys[Math.floor(Math.random() * keys.length)];
 
   currentQuestion = {
@@ -81,7 +90,7 @@ function newQuestion() {
   };
 
   questionElement.textContent =
-    `Champion: ${currentQuestion.champion} | Fähigkeit: ${currentQuestion.key}`;
+    `Champion: ${currentQuestion.champion} | Fähigkeit: ${getAbilityLabel(currentQuestion.key)}`;
 
   iconElement.src = currentQuestion.icon;
   answerInput.value = "";

@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+main {
+  background: #222;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+img {
+  margin: 15px;
+}
+
+.correct {
+  color: #4ade80;
+}
+
+.close {
+  color: #facc15;
+}
+
+.wrong {
+  color: #f87171;
+}

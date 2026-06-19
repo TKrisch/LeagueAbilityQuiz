@@ -24,23 +24,17 @@ async function getLatestVersion() {
 }
 
 async function loadAbilities() {
-  const version = await getLatestVersion();
+  const versionResponse = await fetch("https://ddragon.leagueoflegends.com/api/versions.json");
+  const versions = await versionResponse.json();
+  const version = versions[0];
 
-  const championListResponse = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`
+  const response = await fetch(
+    `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/championFull.json`
   );
 
-  const championListData = await championListResponse.json();
-  const championIds = Object.keys(championListData.data);
+  const data = await response.json();
 
-  const championPromises = championIds.map(async (championId) => {
-    const response = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${championId}.json`
-    );
-
-    const data = await response.json();
-    const champion = data.data[championId];
-
+  abilities = Object.values(data.data).map(champion => {
     return {
       champion: champion.name,
       abilities: {
@@ -68,7 +62,6 @@ async function loadAbilities() {
     };
   });
 
-  abilities = await Promise.all(championPromises);
   newQuestion();
 }
 

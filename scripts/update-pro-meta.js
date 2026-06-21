@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const INPUT_FILE =
-  process.env.INPUT_FILE || "data/2026_LoL_esports_match_data_from_OraclesElixir.csv";
+process.env.INPUT_FILE || "data/2026_LoL_esports_match_data_from_OraclesElixir.csv";
 
 const OUTPUT_FILE = "pro-meta.json";
 

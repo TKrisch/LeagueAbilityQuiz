@@ -7,19 +7,51 @@
 </head>
 <body>
   <main>
-    <h1>League Ability Quiz</h1>
+    <div id="setupScreen">
+      <h2>Quiz-Einstellungen</h2>
+      <p>Was möchtest du in diesem Spieldurchgang erraten?</p>
+      
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="checkChamp" checked> Champion-Name
+        </label>
+        <label>
+          <input type="checkbox" id="checkKey" checked> Taste (Passive, Q, W, E, R)
+        </label>
+        <label>
+          <input type="checkbox" id="checkAbility" checked> Name der Fähigkeit
+        </label>
+      </div>
+      
+      <button id="startButton">Quiz starten</button>
+    </div>
 
-    <p id="question"></p>
+    <div id="quizScreen" style="display: none;">
+      <h1>League Ability Quiz</h1>
 
-    <img id="abilityIcon" width="64" height="64" alt="Ability Icon">
+      <p id="question"></p>
 
-    <input id="answerInput" placeholder="Name der Fähigkeit">
-    <button id="checkButton">Prüfen</button>
-    <button id="nextButton" style="display: none;">Nächste Frage</button>
+      <img id="abilityIcon" alt="Ability Icon">
 
-    <p id="result"></p>
-    <p id="correctAnswer"></p>
-    <p id="score"></p>
+      <input id="championInput" placeholder="Name des Champions" autocomplete="off">
+      
+      <div id="abilityButtons">
+        <button class="ability-btn" data-key="P">Passive</button>
+        <button class="ability-btn" data-key="Q">Q</button>
+        <button class="ability-btn" data-key="W">W</button>
+        <button class="ability-btn" data-key="E">E</button>
+        <button class="ability-btn" data-key="R">R</button>
+      </div>
+
+      <input id="answerInput" placeholder="Name der Fähigkeit" autocomplete="off">
+      
+      <button id="checkButton">Prüfen</button>
+      <button id="nextButton" style="display: none;">Nächste Frage</button>
+
+      <p id="result"></p>
+      <p id="correctAnswer"></p>
+      <p id="score"></p>
+    </div>
   </main>
 
   <script src="script.js"></script>

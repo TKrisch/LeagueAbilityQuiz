@@ -4,6 +4,8 @@ let score = 0;
 let rounds = 0;
 let answered = false;
 let selectedKey = null; 
+let proMetaChampions = [];
+let useProMetaOnly = false;
 
 // Speichert, welche Optionen aktiv sind
 let settings = {
@@ -37,6 +39,7 @@ startButton.addEventListener("click", () => {
   settings.champ = document.getElementById("checkChamp").checked;
   settings.key = document.getElementById("checkKey").checked;
   settings.ability = document.getElementById("checkAbility").checked;
+  useProMetaOnly = document.getElementById("checkProMeta").checked;
 
   // Validierung: Mindestens ein Haken muss gesetzt sein
   if (!settings.champ && !settings.key && !settings.ability) {
@@ -63,6 +66,24 @@ abilityButtons.forEach(btn => {
     selectedKey = btn.getAttribute("data-key");
   });
 });
+
+async function loadProMeta() {
+  try {
+    const response = await fetch("pro-meta.json");
+
+    if (!response.ok) {
+      throw new Error("pro-meta.json konnte nicht geladen werden");
+    }
+
+    const data = await response.json();
+    proMetaChampions = data.champions.map(entry => entry.champion);
+
+    console.log("Pro-Play-Champions geladen:", proMetaChampions);
+  } catch (error) {
+    console.warn("Pro-Play-Meta konnte nicht geladen werden:", error);
+    proMetaChampions = [];
+  }
+}
 
 async function loadAbilities() {
   const versionResponse = await fetch("https://ddragon.leagueoflegends.com/api/versions.json");
@@ -94,8 +115,26 @@ function getAbilityLabel(key) {
   return key;
 }
 
+function getQuestionPool() {
+  if (!useProMetaOnly) {
+    return abilities;
+  }
+
+  const filtered = abilities.filter(champion =>
+    proMetaChampions.includes(champion.champion)
+  );
+
+  if (filtered.length === 0) {
+    console.warn("Keine Pro-Play-Champions gefunden. Nutze alle Champions.");
+    return abilities;
+  }
+
+  return filtered;
+}
+
 function newQuestion() {
-  const champion = abilities[Math.floor(Math.random() * abilities.length)];
+  const questionPool = getQuestionPool();
+  const champion = questionPool[Math.floor(Math.random() * questionPool.length)];
   const keys = ["P", "Q", "W", "E", "R"];
   const key = keys[Math.floor(Math.random() * keys.length)];
 
@@ -196,7 +235,7 @@ function checkAnswer() {
     
     if (isChampCorrect) pointsThisRound++;
     userDetails.push(`${originalUserChamp || "Leer"} (${isChampCorrect ? "✓" : "✗"})`);
-    correctDetails.push(currentQuestion.champion);
+    correctDetails.push(getAbilityLabel(currentQuestion.key));
   }
 
   // 2. Taste prüfen (falls aktiv)
@@ -275,4 +314,9 @@ function levenshtein(a, b) {
   return matrix[b.length][a.length];
 }
 
-loadAbilities();
+startGame();
+
+async function startGame() {
+  await loadAbilities();
+  await loadProMeta();
+}

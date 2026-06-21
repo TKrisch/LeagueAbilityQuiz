@@ -235,7 +235,7 @@ function checkAnswer() {
     
     if (isChampCorrect) pointsThisRound++;
     userDetails.push(`${originalUserChamp || "Leer"} (${isChampCorrect ? "✓" : "✗"})`);
-    correctDetails.push(getAbilityLabel(currentQuestion.key));
+    correctDetails.push(currentQuestion.champion);
   }
 
   // 2. Taste prüfen (falls aktiv)

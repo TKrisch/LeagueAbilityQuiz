@@ -29,16 +29,20 @@ jobs:
       - name: gdown installieren
         run: pip install gdown
 
-      - name: Google-Drive-Ordner herunterladen
+      - name: Oracle's-Elixir-Ordner herunterladen
         run: |
           mkdir -p data/oe
           gdown --folder "https://drive.google.com/drive/folders/1gLSw0RLjBbtaNy0dgnGQDAZOHIgCe-HH" -O data/oe
 
-      - name: Neueste CSV finden
+      - name: Passende CSV finden
         id: find_csv
         shell: bash
         run: |
-          CSV_FILE=$(find data/oe -name "*LoL_esports_match_data*.csv" | sort | tail -n 1)
+          CSV_FILE=$(find data/oe -name "*2026*LOL*esports*match*data*Oracle*Elixir*.csv" | sort | tail -n 1)
+
+          if [ -z "$CSV_FILE" ]; then
+            CSV_FILE=$(find data/oe -name "*LoL*esports*match*data*.csv" | sort | tail -n 1)
+          fi
 
           if [ -z "$CSV_FILE" ]; then
             echo "Keine Oracle's-Elixir-CSV gefunden"

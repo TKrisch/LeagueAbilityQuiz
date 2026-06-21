@@ -1,0 +1,68 @@
+name: Update Pro Meta
+
+on:
+  schedule:
+    - cron: "30 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-pro-meta:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: gdown installieren
+        run: pip install gdown
+
+      - name: Google-Drive-Ordner herunterladen
+        run: |
+          mkdir -p data/oe
+          gdown --folder "https://drive.google.com/drive/folders/1gLSw0RLjBbtaNy0dgnGQDAZOHIgCe-HH" -O data/oe
+
+      - name: Neueste CSV finden
+        id: find_csv
+        shell: bash
+        run: |
+          CSV_FILE=$(find data/oe -name "*LoL_esports_match_data*.csv" | sort | tail -n 1)
+
+          if [ -z "$CSV_FILE" ]; then
+            echo "Keine Oracle's-Elixir-CSV gefunden"
+            exit 1
+          fi
+
+          echo "Gefundene CSV: $CSV_FILE"
+          echo "csv_file=$CSV_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: Pro-Meta-Datei erzeugen
+        run: node scripts/update-pro-meta.js
+        env:
+          INPUT_FILE: ${{ steps.find_csv.outputs.csv_file }}
+
+      - name: Änderungen committen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet pro-meta.json; then
+            echo "Keine Änderungen an pro-meta.json"
+            exit 0
+          fi
+
+          git add pro-meta.json
+          git commit -m "Update pro play meta"
+          git push

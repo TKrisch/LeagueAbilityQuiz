@@ -19,7 +19,7 @@ jobs:
       - name: Node.js einrichten
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Python einrichten
         uses: actions/setup-python@v5
@@ -29,33 +29,15 @@ jobs:
       - name: gdown installieren
         run: pip install gdown
 
-      - name: Oracle's-Elixir-Ordner herunterladen
+      - name: Aktuelle Oracle's-Elixir-CSV herunterladen
         run: |
           mkdir -p data/oe
-          gdown --folder "https://drive.google.com/drive/folders/1gLSw0RLjBbtaNy0dgnGQDAZOHIgCe-HH" -O data/oe
-
-      - name: Passende CSV finden
-        id: find_csv
-        shell: bash
-        run: |
-          CSV_FILE=$(find data/oe -name "*2026*LOL*esports*match*data*Oracle*Elixir*.csv" | sort | tail -n 1)
-
-          if [ -z "$CSV_FILE" ]; then
-            CSV_FILE=$(find data/oe -name "*LoL*esports*match*data*.csv" | sort | tail -n 1)
-          fi
-
-          if [ -z "$CSV_FILE" ]; then
-            echo "Keine Oracle's-Elixir-CSV gefunden"
-            exit 1
-          fi
-
-          echo "Gefundene CSV: $CSV_FILE"
-          echo "csv_file=$CSV_FILE" >> "$GITHUB_OUTPUT"
+          gdown --id "1hnpbrUpBMS1TZI7IovfpKeZfWJH1Aptm" -O "data/oe/2026_LoL_esports_match_data_from_OraclesElixir.csv"
 
       - name: Pro-Meta-Datei erzeugen
         run: node scripts/update-pro-meta.js
         env:
-          INPUT_FILE: ${{ steps.find_csv.outputs.csv_file }}
+          INPUT_FILE: data/oe/2026_LoL_esports_match_data_from_OraclesElixir.csv
 
       - name: Änderungen committen
         run: |

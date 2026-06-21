@@ -32,7 +32,7 @@ jobs:
       - name: Aktuelle Oracle's-Elixir-CSV herunterladen
         run: |
           mkdir -p data/oe
-          gdown --id "1hnpbrUpBMS1TZI7IovfpKeZfWJH1Aptm" -O "data/oe/2026_LoL_esports_match_data_from_OraclesElixir.csv"
+          gdown "1hnpbrUpBMS1TZI7IovfpKeZfWJH1Aptm" -O "data/oe/2026_LoL_esports_match_data_from_OraclesElixir.csv"
 
       - name: Pro-Meta-Datei erzeugen
         run: node scripts/update-pro-meta.js

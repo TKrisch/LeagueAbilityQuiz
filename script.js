@@ -31,13 +31,11 @@ let answered = false;
 let selectedKey = null; 
 let proMetaChampions = [];
 let useProMetaOnly = false;
-let currentModeString = ""; // Speichert den Namen des Modus für das Leaderboard
+let currentModeString = "";
 
-// Speichert, welche Optionen aktiv sind
 let settings = { champ: true, key: true, ability: true };
 let activeOptionsCount = 3; 
 
-// UI Elemente & Bildschirme abgreifen
 const setupScreen = document.getElementById("setupScreen");
 const quizScreen = document.getElementById("quizScreen");
 const endScreen = document.getElementById("endScreen");
@@ -61,11 +59,40 @@ const resultElement = document.getElementById("result");
 const scoreElement = document.getElementById("score");
 const playerNameInput = document.getElementById("playerNameInput");
 
-// --- EVENT LISTENER BUTTONS ---
+// NEU: Dropdown für Leaderboard
+const leaderboardModeSelect = document.getElementById("leaderboardModeSelect");
+
+// Generiert alle möglichen Modus-Kombinationen für das Dropdown
+function initLeaderboardSelect() {
+  const combos = [
+    "Champ", "Taste", "Fähigkeit",
+    "Champ + Taste", "Champ + Fähigkeit", "Taste + Fähigkeit",
+    "Champ + Taste + Fähigkeit"
+  ];
+  combos.forEach(c => {
+    leaderboardModeSelect.add(new Option(c, c));
+    leaderboardModeSelect.add(new Option(c + " (Pro)", c + " (Pro)"));
+  });
+}
+initLeaderboardSelect();
+
+// Liest den aktuellen Modus live aus den Checkboxen aus
+function getCurrentModeFromUI() {
+  let parts = [];
+  if (document.getElementById("checkChamp").checked) parts.push("Champ");
+  if (document.getElementById("checkKey").checked) parts.push("Taste");
+  if (document.getElementById("checkAbility").checked) parts.push("Fähigkeit");
+  if (parts.length === 0) parts.push("Champ"); // Fallback
+  let mode = parts.join(" + ");
+  if (document.getElementById("checkProMeta").checked) mode += " (Pro)";
+  return mode;
+}
+
+// Wenn ein anderer Modus im Dropdown gewählt wird -> neu laden
+leaderboardModeSelect.addEventListener("change", loadLeaderboard);
 
 checkButton.addEventListener("click", checkAnswer);
 
-// Nächste Frage oder Quiz beenden
 nextButton.addEventListener("click", () => {
   if (rounds >= MAX_ROUNDS) {
     quizScreen.style.display = "none";
@@ -78,7 +105,6 @@ nextButton.addEventListener("click", () => {
   }
 });
 
-// Start-Button Logik
 startButton.addEventListener("click", () => {
   settings.champ = document.getElementById("checkChamp").checked;
   settings.key = document.getElementById("checkKey").checked;
@@ -86,33 +112,19 @@ startButton.addEventListener("click", () => {
   useProMetaOnly = document.getElementById("checkProMeta").checked;
 
   if (!settings.champ && !settings.key && !settings.ability) {
-    alert("Bitte wähle mindestens eine Sache aus, die du erraten möchtest!");
-    return;
+    alert("Bitte wähle mindestens eine Sache aus!"); return;
   }
 
-  // Modus-String für die Datenbank generieren
-  let modeParts = [];
-  if (settings.champ) modeParts.push("Champ");
-  if (settings.key) modeParts.push("Taste");
-  if (settings.ability) modeParts.push("Fähigkeit");
-  currentModeString = modeParts.join(" + ");
-  if (useProMetaOnly) {
-    currentModeString += " (Pro)";
-  }
-
+  currentModeString = getCurrentModeFromUI();
   activeOptionsCount = (settings.champ ? 1 : 0) + (settings.key ? 1 : 0) + (settings.ability ? 1 : 0);
 
-  score = 0;
-  rounds = 0;
-  
+  score = 0; rounds = 0;
   setupScreen.style.display = "none";
   quizScreen.style.display = "block";
-  nextButton.textContent = "Nächste Frage"; // Reset falls man neu startet
-  
+  nextButton.textContent = "Nächste Frage"; 
   newQuestion();
 });
 
-// Zuweisung der Tasten-Auswahl
 abilityButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     if (answered) return;
@@ -122,13 +134,14 @@ abilityButtons.forEach(btn => {
   });
 });
 
-// Leaderboard Buttons
 showLeaderboardBtn.addEventListener("click", () => {
+  leaderboardModeSelect.value = getCurrentModeFromUI(); // Dropdown auf aktuelle Auswahl setzen
   setupScreen.style.display = "none";
   loadLeaderboard();
 });
 
 skipScoreBtn.addEventListener("click", () => {
+  leaderboardModeSelect.value = currentModeString;
   endScreen.style.display = "none";
   loadLeaderboard();
 });
@@ -144,12 +157,12 @@ submitScoreBtn.addEventListener("click", async () => {
   submitScoreBtn.textContent = "Speichere...";
 
   try {
-    await db.collection("scores").add({
+    // NEU: Speichert in einer separaten Tabelle pro Modus!
+    await db.collection("leaderboards").doc(currentModeString).collection("scores").add({
       name: name,
       score: score,
       maxScore: MAX_ROUNDS * activeOptionsCount,
       rounds: rounds,
-      mode: currentModeString,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
   } catch (error) {
@@ -161,19 +174,22 @@ submitScoreBtn.addEventListener("click", async () => {
   submitScoreBtn.textContent = "Score eintragen";
   playerNameInput.value = "";
   
+  leaderboardModeSelect.value = currentModeString;
   endScreen.style.display = "none";
   loadLeaderboard();
 });
 
 // --- LEADERBOARD LOGIK ---
-
 async function loadLeaderboard() {
   leaderboardScreen.style.display = "block";
   const tbody = document.getElementById("leaderboardBody");
-  tbody.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Lade Ranking...</td></tr>";
+  tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Lade Ranking...</td></tr>";
+
+  const selectedMode = leaderboardModeSelect.value;
 
   try {
-    const snapshot = await db.collection("scores")
+    // Holt die Scores NUR für den ausgewählten Modus
+    const snapshot = await db.collection("leaderboards").doc(selectedMode).collection("scores")
                              .orderBy("score", "desc")
                              .limit(10)
                              .get();
@@ -193,7 +209,6 @@ async function loadLeaderboard() {
       tr.innerHTML = `
         <td>${rankDisplay}</td>
         <td><strong>${data.name}</strong></td>
-        <td style="font-size: 0.85em; color: #aaa;">${data.mode || "-"}</td>
         <td>${data.score} <span style="font-size: 0.8em; color: #888;">/ ${data.maxScore || '?'}</span></td>
       `;
       tbody.appendChild(tr);
@@ -201,16 +216,15 @@ async function loadLeaderboard() {
     });
 
     if (snapshot.empty) {
-      tbody.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Noch keine Einträge!</td></tr>";
+      tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Noch keine Einträge für diesen Modus!</td></tr>";
     }
   } catch (error) {
     console.error("Fehler beim Laden:", error);
-    tbody.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Fehler beim Laden.</td></tr>";
+    tbody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>Fehler beim Laden.</td></tr>";
   }
 }
 
-// --- DATEN LADEN & QUIZ LOGIK ---
-
+// --- DATEN LADEN & QUIZ LOGIK (Rest bleibt identisch) ---
 async function loadProMeta() {
   try {
     const response = await fetch("pro-meta.json");
@@ -244,10 +258,7 @@ async function loadAbilities() {
   });
 }
 
-function getAbilityLabel(key) {
-  if (key === "P") return "Passive";
-  return key;
-}
+function getAbilityLabel(key) { return key === "P" ? "Passive" : key; }
 
 function getQuestionPool() {
   if (!useProMetaOnly) return abilities;
@@ -263,10 +274,7 @@ function newQuestion() {
   const key = keys[Math.floor(Math.random() * keys.length)];
 
   currentQuestion = {
-    champion: champion.champion,
-    key: key,
-    answer: champion.abilities[key].name,
-    icon: champion.abilities[key].icon
+    champion: champion.champion, key: key, answer: champion.abilities[key].name, icon: champion.abilities[key].icon
   };
 
   let promptParts = [];
@@ -296,19 +304,11 @@ function newQuestion() {
   championInput.value = ""; answerInput.value = ""; resultElement.textContent = "";
 
   selectedKey = null;
-  abilityButtons.forEach(b => {
-    b.classList.remove("selected");
-    b.disabled = false;
-  });
+  abilityButtons.forEach(b => { b.classList.remove("selected"); b.disabled = false; });
 
-  checkButton.style.display = "inline-block";
-  nextButton.style.display = "none";
-  
-  championInput.disabled = false;
-  answerInput.disabled = false;
-  correctAnswerElement.textContent = "";
-  resultElement.className = "";
-  answered = false;
+  checkButton.style.display = "inline-block"; nextButton.style.display = "none";
+  championInput.disabled = false; answerInput.disabled = false;
+  correctAnswerElement.textContent = ""; resultElement.className = ""; answered = false;
   
   if (settings.champ) championInput.focus();
   else if (settings.ability) answerInput.focus();
@@ -357,47 +357,31 @@ function checkAnswer() {
     const originalUserAbility = answerInput.value.trim();
     const userAbility = normalize(originalUserAbility);
     const acceptedAnswers = getAcceptedAnswers(currentQuestion.answer);
-    
     const closestAbility = acceptedAnswers.reduce((best, answer) => {
       const distance = levenshtein(userAbility, normalize(answer));
       if (!best || distance < best.distance) return { answer: answer, distance: distance };
       return best;
     }, null);
-    
     const isAbilityCorrect = closestAbility && closestAbility.distance <= (closestAbility.answer.length <= 8 ? 1 : 2);
     if (isAbilityCorrect) pointsThisRound++;
     userDetails.push(`${originalUserAbility || "Leer"} (${isAbilityCorrect ? "✓" : "✗"})`);
     correctDetails.push(currentQuestion.answer);
   }
 
-  score += pointsThisRound;
-  rounds++;
-  const maxPossibleScore = MAX_ROUNDS * activeOptionsCount;
+  score += pointsThisRound; rounds++;
 
   resultElement.textContent = `Ergebnis: ${pointsThisRound} von ${activeOptionsCount} Punkten erhalten!`;
   if (pointsThisRound === activeOptionsCount) resultElement.className = "correct";
   else if (pointsThisRound === 0) resultElement.className = "wrong";
   else resultElement.className = "close";
 
-  correctAnswerElement.innerHTML = `
-    <strong>Deine Antwort:</strong> ${userDetails.join(" | ")} <br><br>
-    <strong>Richtige Antwort:</strong> ${correctDetails.join(" | ")}
-  `;
-
-  // Anzeige der Punkte über alle bisherigen Runden
+  correctAnswerElement.innerHTML = `<strong>Deine Antwort:</strong> ${userDetails.join(" | ")} <br><br><strong>Richtige Antwort:</strong> ${correctDetails.join(" | ")}`;
   scoreElement.textContent = `Punkte: ${score} / ${rounds * activeOptionsCount}`;
 
-  checkButton.style.display = "none";
-  nextButton.style.display = "inline-block";
-  
-  // Ändere Button-Text in der letzten Runde
-  if (rounds >= MAX_ROUNDS) {
-    nextButton.textContent = "Ergebnis ansehen";
-  }
+  checkButton.style.display = "none"; nextButton.style.display = "inline-block";
+  if (rounds >= MAX_ROUNDS) nextButton.textContent = "Ergebnis ansehen";
 
-  championInput.disabled = true;
-  answerInput.disabled = true;
-  abilityButtons.forEach(b => b.disabled = true);
+  championInput.disabled = true; answerInput.disabled = true; abilityButtons.forEach(b => b.disabled = true);
 }
 
 function normalize(text) {
@@ -419,7 +403,4 @@ function levenshtein(a, b) {
 
 startGame();
 
-async function startGame() {
-  await loadAbilities();
-  await loadProMeta();
-}
+async function startGame() { await loadAbilities(); await loadProMeta(); }

@@ -27,9 +27,7 @@
 
     <div id="quizScreen" style="display: none;">
       <h1>League Ability Quiz</h1>
-
       <p id="question"></p>
-
       <img id="abilityIcon" alt="Ability Icon">
 
       <input id="championInput" placeholder="Name des Champions" autocomplete="off">
@@ -63,12 +61,14 @@
 
     <div id="leaderboardScreen" style="display: none;">
       <h2>🏆 Top 10 Spieler 🏆</h2>
+      
+      <select id="leaderboardModeSelect"></select>
+
       <table id="leaderboardTable">
         <thead>
           <tr>
             <th>Platz</th>
             <th>Name</th>
-            <th>Modus</th>
             <th>Punkte</th>
           </tr>
         </thead>

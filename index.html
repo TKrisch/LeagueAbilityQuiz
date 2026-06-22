@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>League Ability Quiz</title>
   <link rel="stylesheet" href="style.css">
+  
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <main>
@@ -12,22 +15,14 @@
       <p>Was möchtest du in diesem Spieldurchgang erraten?</p>
       
       <div class="checkbox-group">
-        <label>
-          <input type="checkbox" id="checkChamp" checked> Champion-Name
-        </label>
-        <label>
-          <input type="checkbox" id="checkKey" checked> Taste (Passive, Q, W, E, R)
-        </label>
-        <label>
-          <input type="checkbox" id="checkAbility" checked> Name der Fähigkeit
-        </label>
-        <label>
-          <input type="checkbox" id="checkProMeta">
-          Nur Pro-Play-Champions
-        </label>
+        <label><input type="checkbox" id="checkChamp" checked> Champion-Name</label>
+        <label><input type="checkbox" id="checkKey" checked> Taste (Passive, Q, W, E, R)</label>
+        <label><input type="checkbox" id="checkAbility" checked> Name der Fähigkeit</label>
+        <label><input type="checkbox" id="checkProMeta"> Nur Pro-Play-Champions</label>
       </div>
       
       <button id="startButton">Quiz starten</button>
+      <button id="showLeaderboardBtn" class="secondary-btn">Ranking ansehen</button>
     </div>
 
     <div id="quizScreen" style="display: none;">
@@ -55,6 +50,32 @@
       <p id="result"></p>
       <p id="correctAnswer"></p>
       <p id="score"></p>
+    </div>
+
+    <div id="endScreen" style="display: none;">
+      <h2>Quiz Beendet!</h2>
+      <p id="finalScoreText"></p>
+      
+      <input id="playerNameInput" placeholder="Dein Spielername" maxlength="15" autocomplete="off">
+      <button id="submitScoreBtn">Score eintragen</button>
+      <button id="skipScoreBtn" class="secondary-btn">Überspringen</button>
+    </div>
+
+    <div id="leaderboardScreen" style="display: none;">
+      <h2>🏆 Top 10 Spieler 🏆</h2>
+      <table id="leaderboardTable">
+        <thead>
+          <tr>
+            <th>Platz</th>
+            <th>Name</th>
+            <th>Modus</th>
+            <th>Punkte</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+          </tbody>
+      </table>
+      <button id="backToSetupBtn">Neues Spiel</button>
     </div>
   </main>
 

@@ -1,176 +1,216 @@
 {
-  "updatedAt": "2026-06-21T21:20:41.961Z",
-  "source": "Oracle's Elixir CSV",
-  "inputFile": "data/2026_LoL_esports_match_data_from_OraclesElixir.csv",
-  "leagues": [
+  "updatedAt": "2026-06-24T22:54:48.825Z",
+  "source": "Leaguepedia Cargo",
+  "daysBack": 30,
+  "topAmount": 50,
+  "tournamentFilter": [
     "LCK",
     "LPL",
     "LEC",
     "LCS",
     "MSI",
-    "WCS"
+    "World"
   ],
-  "topAmount": 40,
   "champions": [
     {
-      "champion": "Xin Zhao",
-      "picks": 349
-    },
-    {
       "champion": "Ryze",
-      "picks": 331
-    },
-    {
-      "champion": "Jarvan IV",
-      "picks": 310
-    },
-    {
-      "champion": "Yunara",
-      "picks": 305
-    },
-    {
-      "champion": "Ezreal",
-      "picks": 287
-    },
-    {
-      "champion": "Pantheon",
-      "picks": 286
+      "picks": 61
     },
     {
       "champion": "Rumble",
-      "picks": 284
-    },
-    {
-      "champion": "Azir",
-      "picks": 281
+      "picks": 57
     },
     {
       "champion": "Sion",
-      "picks": 280
+      "picks": 57
+    },
+    {
+      "champion": "Ezreal",
+      "picks": 54
     },
     {
       "champion": "Vi",
-      "picks": 267
-    },
-    {
-      "champion": "Bard",
-      "picks": 261
-    },
-    {
-      "champion": "Corki",
-      "picks": 257
-    },
-    {
-      "champion": "Ambessa",
-      "picks": 246
-    },
-    {
-      "champion": "K'Sante",
-      "picks": 245
-    },
-    {
-      "champion": "Lulu",
-      "picks": 243
-    },
-    {
-      "champion": "Gnar",
-      "picks": 239
-    },
-    {
-      "champion": "Renekton",
-      "picks": 234
-    },
-    {
-      "champion": "Aurora",
-      "picks": 222
-    },
-    {
-      "champion": "Seraphine",
-      "picks": 216
-    },
-    {
-      "champion": "Neeko",
-      "picks": 214
-    },
-    {
-      "champion": "Ashe",
-      "picks": 211
-    },
-    {
-      "champion": "Nami",
-      "picks": 203
-    },
-    {
-      "champion": "Jhin",
-      "picks": 201
-    },
-    {
-      "champion": "Wukong",
-      "picks": 200
-    },
-    {
-      "champion": "Nautilus",
-      "picks": 200
+      "picks": 49
     },
     {
       "champion": "Jayce",
-      "picks": 191
-    },
-    {
-      "champion": "Varus",
-      "picks": 184
-    },
-    {
-      "champion": "Karma",
-      "picks": 180
-    },
-    {
-      "champion": "Orianna",
-      "picks": 180
-    },
-    {
-      "champion": "Taliyah",
-      "picks": 175
-    },
-    {
-      "champion": "Nocturne",
-      "picks": 170
-    },
-    {
-      "champion": "Alistar",
-      "picks": 168
+      "picks": 47
     },
     {
       "champion": "Lucian",
-      "picks": 168
+      "picks": 47
     },
     {
-      "champion": "Ahri",
-      "picks": 157
-    },
-    {
-      "champion": "Annie",
-      "picks": 157
-    },
-    {
-      "champion": "Rakan",
-      "picks": 151
+      "champion": "Bard",
+      "picks": 45
     },
     {
       "champion": "Caitlyn",
-      "picks": 148
+      "picks": 45
     },
     {
-      "champion": "Sivir",
-      "picks": 136
-    },
-    {
-      "champion": "Anivia",
-      "picks": 133
+      "champion": "Xin Zhao",
+      "picks": 45
     },
     {
       "champion": "Milio",
-      "picks": 121
+      "picks": 44
+    },
+    {
+      "champion": "Nautilus",
+      "picks": 43
+    },
+    {
+      "champion": "Wukong",
+      "picks": 43
+    },
+    {
+      "champion": "Lee Sin",
+      "picks": 42
+    },
+    {
+      "champion": "Lulu",
+      "picks": 42
+    },
+    {
+      "champion": "Ashe",
+      "picks": 41
+    },
+    {
+      "champion": "Jarvan IV",
+      "picks": 40
+    },
+    {
+      "champion": "Seraphine",
+      "picks": 40
+    },
+    {
+      "champion": "Pantheon",
+      "picks": 38
+    },
+    {
+      "champion": "Annie",
+      "picks": 37
+    },
+    {
+      "champion": "Viktor",
+      "picks": 37
+    },
+    {
+      "champion": "Cassiopeia",
+      "picks": 36
+    },
+    {
+      "champion": "K'Sante",
+      "picks": 35
+    },
+    {
+      "champion": "Naafiri",
+      "picks": 34
+    },
+    {
+      "champion": "Karma",
+      "picks": 34
+    },
+    {
+      "champion": "Jhin",
+      "picks": 34
+    },
+    {
+      "champion": "Anivia",
+      "picks": 34
+    },
+    {
+      "champion": "Rakan",
+      "picks": 34
+    },
+    {
+      "champion": "Renekton",
+      "picks": 33
+    },
+    {
+      "champion": "Neeko",
+      "picks": 32
+    },
+    {
+      "champion": "Ahri",
+      "picks": 31
+    },
+    {
+      "champion": "Aurora",
+      "picks": 31
+    },
+    {
+      "champion": "Yunara",
+      "picks": 30
+    },
+    {
+      "champion": "Gnar",
+      "picks": 30
+    },
+    {
+      "champion": "Trundle",
+      "picks": 29
+    },
+    {
+      "champion": "Orianna",
+      "picks": 28
+    },
+    {
+      "champion": "Ambessa",
+      "picks": 28
+    },
+    {
+      "champion": "Nocturne",
+      "picks": 27
+    },
+    {
+      "champion": "Xayah",
+      "picks": 27
+    },
+    {
+      "champion": "Akali",
+      "picks": 25
+    },
+    {
+      "champion": "Sivir",
+      "picks": 24
+    },
+    {
+      "champion": "Twisted Fate",
+      "picks": 23
+    },
+    {
+      "champion": "Galio",
+      "picks": 22
+    },
+    {
+      "champion": "Miss Fortune",
+      "picks": 21
+    },
+    {
+      "champion": "Shen",
+      "picks": 21
+    },
+    {
+      "champion": "Skarner",
+      "picks": 21
+    },
+    {
+      "champion": "Nami",
+      "picks": 21
+    },
+    {
+      "champion": "Mel",
+      "picks": 20
+    },
+    {
+      "champion": "Taliyah",
+      "picks": 20
+    },
+    {
+      "champion": "Varus",
+      "picks": 19
     }
   ]
 }

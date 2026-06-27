@@ -30,6 +30,7 @@ let rounds = 0;
 let answered = false;
 let selectedKey = null; 
 let proMetaChampions = [];
+let usedQuestions = [];
 let useProMetaOnly = false;
 let currentModeString = "";
 
@@ -119,6 +120,7 @@ startButton.addEventListener("click", () => {
   activeOptionsCount = (settings.champ ? 1 : 0) + (settings.key ? 1 : 0) + (settings.ability ? 1 : 0);
 
   score = 0; rounds = 0;
+  usedQuestions = [];
   setupScreen.style.display = "none";
   quizScreen.style.display = "block";
   nextButton.textContent = "Nächste Frage"; 
@@ -269,9 +271,38 @@ function getQuestionPool() {
 
 function newQuestion() {
   const questionPool = getQuestionPool();
-  const champion = questionPool[Math.floor(Math.random() * questionPool.length)];
   const keys = ["P", "Q", "W", "E", "R"];
-  const key = keys[Math.floor(Math.random() * keys.length)];
+
+  const allPossibleQuestions = [];
+
+  questionPool.forEach(champion => {
+    keys.forEach(key => {
+      allPossibleQuestions.push({
+        champion,
+        key,
+        id: `${champion.champion}-${key}`
+      });
+    });
+  });
+
+  let availableQuestions = allPossibleQuestions.filter(question =>
+    !usedQuestions.includes(question.id)
+  );
+
+  // Falls alle Kombinationen schon benutzt wurden, wieder von vorne anfangen.
+  // Bei 10 Runden passiert das normalerweise nicht.
+  if (availableQuestions.length === 0) {
+    usedQuestions = [];
+    availableQuestions = allPossibleQuestions;
+  }
+
+  const selectedQuestion =
+    availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+
+  const champion = selectedQuestion.champion;
+  const key = selectedQuestion.key;
+
+  usedQuestions.push(selectedQuestion.id);
 
   currentQuestion = {
     champion: champion.champion, key: key, answer: champion.abilities[key].name, icon: champion.abilities[key].icon

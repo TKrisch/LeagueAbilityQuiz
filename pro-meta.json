@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-29T17:58:30.132Z",
+  "updatedAt": "2026-07-20T15:37:40.370Z",
   "source": "Leaguepedia Cargo",
   "daysBack": 30,
   "topAmount": 50,
@@ -13,204 +13,204 @@
   ],
   "champions": [
     {
-      "champion": "Ryze",
-      "picks": 41
-    },
-    {
-      "champion": "Sion",
-      "picks": 40
-    },
-    {
-      "champion": "Ezreal",
-      "picks": 39
-    },
-    {
-      "champion": "Rumble",
-      "picks": 38
-    },
-    {
-      "champion": "Jayce",
-      "picks": 32
-    },
-    {
-      "champion": "Vi",
-      "picks": 30
-    },
-    {
-      "champion": "Rakan",
-      "picks": 30
-    },
-    {
       "champion": "Jarvan IV",
-      "picks": 30
-    },
-    {
-      "champion": "Cassiopeia",
-      "picks": 29
-    },
-    {
-      "champion": "Bard",
-      "picks": 29
-    },
-    {
-      "champion": "Wukong",
-      "picks": 29
-    },
-    {
-      "champion": "Lucian",
-      "picks": 28
-    },
-    {
-      "champion": "Caitlyn",
-      "picks": 28
-    },
-    {
-      "champion": "Ashe",
-      "picks": 28
-    },
-    {
-      "champion": "Nautilus",
-      "picks": 28
-    },
-    {
-      "champion": "Milio",
-      "picks": 27
-    },
-    {
-      "champion": "Xin Zhao",
-      "picks": 27
-    },
-    {
-      "champion": "Lulu",
-      "picks": 27
-    },
-    {
-      "champion": "K'Sante",
-      "picks": 27
-    },
-    {
-      "champion": "Pantheon",
-      "picks": 27
-    },
-    {
-      "champion": "Karma",
-      "picks": 26
-    },
-    {
-      "champion": "Viktor",
-      "picks": 26
-    },
-    {
-      "champion": "Seraphine",
-      "picks": 26
-    },
-    {
-      "champion": "Lee Sin",
-      "picks": 26
-    },
-    {
-      "champion": "Jhin",
-      "picks": 25
-    },
-    {
-      "champion": "Annie",
-      "picks": 24
-    },
-    {
-      "champion": "Naafiri",
-      "picks": 24
-    },
-    {
-      "champion": "Neeko",
-      "picks": 24
-    },
-    {
-      "champion": "Renekton",
-      "picks": 23
-    },
-    {
-      "champion": "Xayah",
-      "picks": 23
-    },
-    {
-      "champion": "Trundle",
-      "picks": 22
-    },
-    {
-      "champion": "Anivia",
-      "picks": 22
-    },
-    {
-      "champion": "Ahri",
       "picks": 20
     },
     {
+      "champion": "Syndra",
+      "picks": 19
+    },
+    {
+      "champion": "Camille",
+      "picks": 19
+    },
+    {
+      "champion": "Ezreal",
+      "picks": 18
+    },
+    {
+      "champion": "Cassiopeia",
+      "picks": 17
+    },
+    {
+      "champion": "Lee Sin",
+      "picks": 16
+    },
+    {
+      "champion": "Ziggs",
+      "picks": 16
+    },
+    {
       "champion": "Orianna",
-      "picks": 19
-    },
-    {
-      "champion": "Twisted Fate",
-      "picks": 19
-    },
-    {
-      "champion": "Gnar",
-      "picks": 18
-    },
-    {
-      "champion": "Aurora",
-      "picks": 18
-    },
-    {
-      "champion": "Nocturne",
-      "picks": 18
-    },
-    {
-      "champion": "Sivir",
-      "picks": 17
-    },
-    {
-      "champion": "Shen",
-      "picks": 17
-    },
-    {
-      "champion": "Akali",
-      "picks": 16
-    },
-    {
-      "champion": "Ambessa",
-      "picks": 16
-    },
-    {
-      "champion": "Varus",
-      "picks": 16
-    },
-    {
-      "champion": "Yunara",
-      "picks": 15
-    },
-    {
-      "champion": "Galio",
-      "picks": 15
-    },
-    {
-      "champion": "Alistar",
-      "picks": 15
-    },
-    {
-      "champion": "Mel",
       "picks": 14
     },
     {
-      "champion": "Corki",
+      "champion": "Shen",
+      "picks": 14
+    },
+    {
+      "champion": "Gnar",
+      "picks": 14
+    },
+    {
+      "champion": "Naafiri",
       "picks": 13
     },
     {
-      "champion": "Miss Fortune",
+      "champion": "Leona",
       "picks": 13
     },
     {
-      "champion": "Senna",
+      "champion": "Ambessa",
       "picks": 13
+    },
+    {
+      "champion": "Jhin",
+      "picks": 13
+    },
+    {
+      "champion": "Jayce",
+      "picks": 12
+    },
+    {
+      "champion": "Rumble",
+      "picks": 11
+    },
+    {
+      "champion": "Ryze",
+      "picks": 11
+    },
+    {
+      "champion": "Vi",
+      "picks": 11
+    },
+    {
+      "champion": "Anivia",
+      "picks": 10
+    },
+    {
+      "champion": "Viktor",
+      "picks": 10
+    },
+    {
+      "champion": "Xin Zhao",
+      "picks": 10
+    },
+    {
+      "champion": "Bard",
+      "picks": 10
+    },
+    {
+      "champion": "Nautilus",
+      "picks": 10
+    },
+    {
+      "champion": "Taliyah",
+      "picks": 8
+    },
+    {
+      "champion": "Sylas",
+      "picks": 7
+    },
+    {
+      "champion": "Rell",
+      "picks": 7
+    },
+    {
+      "champion": "Caitlyn",
+      "picks": 7
+    },
+    {
+      "champion": "K'Sante",
+      "picks": 7
+    },
+    {
+      "champion": "Wukong",
+      "picks": 7
+    },
+    {
+      "champion": "Poppy",
+      "picks": 6
+    },
+    {
+      "champion": "Alistar",
+      "picks": 6
+    },
+    {
+      "champion": "Lucian",
+      "picks": 6
+    },
+    {
+      "champion": "Kai'Sa",
+      "picks": 6
+    },
+    {
+      "champion": "Galio",
+      "picks": 6
+    },
+    {
+      "champion": "Varus",
+      "picks": 6
+    },
+    {
+      "champion": "Akali",
+      "picks": 6
+    },
+    {
+      "champion": "Skarner",
+      "picks": 5
+    },
+    {
+      "champion": "Nocturne",
+      "picks": 5
+    },
+    {
+      "champion": "Sivir",
+      "picks": 5
+    },
+    {
+      "champion": "Olaf",
+      "picks": 5
+    },
+    {
+      "champion": "Seraphine",
+      "picks": 5
+    },
+    {
+      "champion": "Karma",
+      "picks": 5
+    },
+    {
+      "champion": "Vayne",
+      "picks": 5
+    },
+    {
+      "champion": "Pyke",
+      "picks": 5
+    },
+    {
+      "champion": "Renekton",
+      "picks": 4
+    },
+    {
+      "champion": "Neeko",
+      "picks": 4
+    },
+    {
+      "champion": "Qiyana",
+      "picks": 4
+    },
+    {
+      "champion": "Ahri",
+      "picks": 4
+    },
+    {
+      "champion": "Rakan",
+      "picks": 4
+    },
+    {
+      "champion": "Trundle",
+      "picks": 3
     }
   ]
 }

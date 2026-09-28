@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-21T15:21:08.155Z",
+  "updatedAt": "2026-09-28T16:53:34.343Z",
   "source": "Leaguepedia Cargo",
   "daysBack": 30,
   "topAmount": 50,
@@ -13,203 +13,203 @@
   ],
   "champions": [
     {
-      "champion": "Ryze",
-      "picks": 136
-    },
-    {
       "champion": "Rumble",
-      "picks": 134
+      "picks": 132
     },
     {
-      "champion": "Ezreal",
-      "picks": 112
+      "champion": "Ryze",
+      "picks": 130
     },
     {
       "champion": "Jarvan IV",
-      "picks": 111
+      "picks": 117
     },
     {
       "champion": "Yunara",
+      "picks": 117
+    },
+    {
+      "champion": "Lulu",
+      "picks": 114
+    },
+    {
+      "champion": "Syndra",
+      "picks": 111
+    },
+    {
+      "champion": "Lucian",
       "picks": 106
     },
     {
-      "champion": "Lee Sin",
-      "picks": 105
+      "champion": "K'Sante",
+      "picks": 104
     },
     {
       "champion": "Orianna",
       "picks": 104
     },
     {
-      "champion": "Lulu",
-      "picks": 103
-    },
-    {
-      "champion": "K'Sante",
-      "picks": 103
-    },
-    {
-      "champion": "Lucian",
-      "picks": 102
-    },
-    {
-      "champion": "Syndra",
-      "picks": 100
+      "champion": "Lee Sin",
+      "picks": 104
     },
     {
       "champion": "Milio",
-      "picks": 97
+      "picks": 103
     },
     {
-      "champion": "Jayce",
-      "picks": 93
+      "champion": "Ezreal",
+      "picks": 101
     },
     {
-      "champion": "Seraphine",
-      "picks": 92
-    },
-    {
-      "champion": "Karma",
-      "picks": 92
-    },
-    {
-      "champion": "Jhin",
-      "picks": 92
+      "champion": "Ambessa",
+      "picks": 99
     },
     {
       "champion": "Olaf",
       "picks": 90
     },
     {
-      "champion": "Ambessa",
-      "picks": 89
+      "champion": "Seraphine",
+      "picks": 86
     },
     {
-      "champion": "Bard",
-      "picks": 85
+      "champion": "Jayce",
+      "picks": 84
+    },
+    {
+      "champion": "Renata Glasc",
+      "picks": 82
     },
     {
       "champion": "Pantheon",
       "picks": 82
     },
     {
-      "champion": "Caitlyn",
-      "picks": 78
+      "champion": "Kalista",
+      "picks": 81
     },
     {
-      "champion": "Vi",
-      "picks": 78
+      "champion": "Jhin",
+      "picks": 81
+    },
+    {
+      "champion": "Karma",
+      "picks": 80
     },
     {
       "champion": "Ashe",
-      "picks": 76
-    },
-    {
-      "champion": "Naafiri",
-      "picks": 76
-    },
-    {
-      "champion": "Viktor",
       "picks": 75
     },
     {
-      "champion": "Kalista",
+      "champion": "Vi",
       "picks": 75
     },
     {
-      "champion": "Renata Glasc",
+      "champion": "Qiyana",
+      "picks": 75
+    },
+    {
+      "champion": "Caitlyn",
       "picks": 74
     },
     {
-      "champion": "Nautilus",
+      "champion": "Naafiri",
       "picks": 73
+    },
+    {
+      "champion": "Bard",
+      "picks": 72
+    },
+    {
+      "champion": "Nautilus",
+      "picks": 71
     },
     {
       "champion": "Gnar",
-      "picks": 73
+      "picks": 69
     },
     {
       "champion": "Akali",
-      "picks": 69
-    },
-    {
-      "champion": "Ahri",
-      "picks": 69
-    },
-    {
-      "champion": "Xin Zhao",
       "picks": 67
     },
     {
       "champion": "Wukong",
+      "picks": 67
+    },
+    {
+      "champion": "Xin Zhao",
       "picks": 66
     },
     {
-      "champion": "Qiyana",
-      "picks": 62
+      "champion": "Viktor",
+      "picks": 64
     },
     {
-      "champion": "Camille",
-      "picks": 60
+      "champion": "Ahri",
+      "picks": 63
     },
     {
       "champion": "Rakan",
-      "picks": 59
+      "picks": 62
     },
     {
       "champion": "Locke",
-      "picks": 56
+      "picks": 59
+    },
+    {
+      "champion": "Camille",
+      "picks": 58
     },
     {
       "champion": "Skarner",
-      "picks": 53
+      "picks": 57
     },
     {
       "champion": "Alistar",
-      "picks": 53
+      "picks": 56
     },
     {
-      "champion": "Trundle",
-      "picks": 52
+      "champion": "Cassiopeia",
+      "picks": 53
     },
     {
       "champion": "Galio",
       "picks": 52
     },
     {
-      "champion": "Nocturne",
-      "picks": 51
-    },
-    {
-      "champion": "Rell",
-      "picks": 48
-    },
-    {
       "champion": "Xayah",
-      "picks": 48
+      "picks": 52
     },
     {
-      "champion": "Renekton",
+      "champion": "Nocturne",
       "picks": 44
     },
     {
-      "champion": "Cassiopeia",
-      "picks": 41
-    },
-    {
-      "champion": "Kai'Sa",
-      "picks": 41
+      "champion": "Cho'Gath",
+      "picks": 43
     },
     {
       "champion": "Varus",
-      "picks": 41
+      "picks": 43
+    },
+    {
+      "champion": "Kai'Sa",
+      "picks": 43
     },
     {
       "champion": "Sivir",
-      "picks": 40
+      "picks": 42
+    },
+    {
+      "champion": "Trundle",
+      "picks": 41
     },
     {
       "champion": "Annie",
+      "picks": 41
+    },
+    {
+      "champion": "Renekton",
       "picks": 40
     }
   ]
